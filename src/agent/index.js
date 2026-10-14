@@ -3,7 +3,7 @@ import { chatWithClaude } from './claude.js';
 import { chatOffline } from './fallback.js';
 
 function suggestionsFor(out) {
-  if (out.home) return ['Room sizes', 'What offers are on this home?', "What's the area like?", 'How do I book a viewing?'];
+  if (out.home || (out.focusHomeId && !out.homes)) return ['Room sizes', 'What offers are on this home?', "What's the area like?", 'How do I book a viewing?'];
   if (out.homes?.length) return ['Show cheaper ones', 'Only with Part Exchange', 'Ready to move into', 'Tell me about the first one'];
   if (out.homes && !out.homes.length) return ['Where do you have homes?', 'Any price', 'Start a new search'];
   return ['3 bed homes under £350k', 'Homes ready to move into', 'Where do you have homes?', 'What is Part Exchange?'];
@@ -32,6 +32,9 @@ export async function chat({ index, message, history = [], context = {}, action 
     }
   }
   if (!out) out = await chatOffline({ index, message, context, action });
+
+  // Follow-up questions about the home already open ("room sizes", "the area") don't repeat its card.
+  if (!action && out.home && out.home.id === context.focusHomeId) out = { ...out, home: null, focusHomeId: context.focusHomeId };
 
   return {
     reply: out.reply,

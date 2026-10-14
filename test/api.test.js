@@ -42,6 +42,12 @@ describe('API', () => {
     expect(r.status).toBe(200);
     expect(r.body.home.id).toBe(first.body.homes[0].id);
     expect(r.body.focusHomeId).toBe(first.body.homes[0].id);
+
+    // A follow-up about the same home answers without repeating its card.
+    const follow = await request(app).post('/api/chat').send({ message: 'Room sizes', context: { focusHomeId: r.body.focusHomeId } });
+    expect(follow.body.home).toBeNull();
+    expect(follow.body.focusHomeId).toBe(r.body.focusHomeId);
+    expect(follow.body.suggestions).toContain('Room sizes');
   });
 
   it('rejects bad input', async () => {

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HomeFinder AI – new homes assistant demo</title>
+  <meta name="description" content="An AI chat assistant that reads a housebuilder's website itself, filters homes from a conversation and answers every question about each property.">
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="logo" aria-hidden="true"></span>HomeFinder AI</div>
+    <span class="pill">Independent portfolio demo</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">AI assistant for housebuilders &amp; estate agents</p>
+      <h1>Ask for a home in plain English.<br><span>Get real listings in seconds.</span></h1>
+      <p class="lead">HomeFinder AI reads a housebuilder's website by itself, with no API, feed or spreadsheet needed. It then turns a conversation into a filtered shortlist and answers every question about each home: rooms, offers, energy features, the area and how to book a viewing.</p>
+
+      <div class="stats" id="stats" aria-live="polite">
+        <div><b id="s-homes">–</b><span>homes for sale</span></div>
+        <div><b id="s-devs">–</b><span>developments</span></div>
+        <div><b id="s-age">–</b><span>last read</span></div>
+      </div>
+
+      <p class="try-label">Try asking:</p>
+      <div class="try">
+        <button data-ask="3 bed house near Rugby under £400k">3 bed house near Rugby under £400k</button>
+        <button data-ask="Homes ready to move into with Part Exchange">Ready to move into, with Part Exchange</button>
+        <button data-ask="4 bedroom detached homes in West Sussex">4 bed detached in West Sussex</button>
+        <button data-ask="What is Deposit Boost?">What is Deposit Boost?</button>
+      </div>
+    </section>
+
+    <section class="how">
+      <h2>How it works</h2>
+      <ol>
+        <li><b>Reads the website itself.</b> It follows the site's own sitemap, then reads every development and home page politely, one page a second and respecting robots.txt. It refreshes every night.</li>
+        <li><b>Understands what people ask.</b> Claude AI turns "something near the station under £350k with a garden" into filters: location and distance, bedrooms, budget, style, offers and must-have features.</li>
+        <li><b>Answers from the real page.</b> Before it talks about a home, it re-reads that home's page, so prices and availability are current. Every answer links to the official page to book.</li>
+      </ol>
+    </section>
+
+    <section class="features">
+      <div><h3>Search by conversation</h3><p>Town, postcode or "within 10 miles of…", plus bedrooms, budget, house style, Part Exchange, Deposit Boost, ready to move, garage, study and more.</p></div>
+      <div><h3>Every detail of every home</h3><p>Room-by-room dimensions, floor plans, energy features, offers, nearest show home, local schools and transport.</p></div>
+      <div><h3>One line to install</h3><p>A single <code>&lt;script&gt;</code> tag adds the chat to any website: WordPress, Webflow, Shopify or custom.</p></div>
+      <div><h3>Honest by design</h3><p>It only states what the website says, explains when something isn't listed, and hands over to the sales team for anything else.</p></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p><b>Independent portfolio demo</b> built by <a href="https://github.com/ahmad0187" target="_blank" rel="noopener">Ahmad Murtaza</a>. Listings are read from the public <span id="site-name">David Wilson Homes</span> website and every home links back to its official page. Not affiliated with, endorsed by or speaking for David Wilson Homes or Barratt Redrow plc. Prices, offers and availability can change, so always confirm with the builder.</p>
+  </footer>
+
+  <script src="demo.js" defer></script>
+  <script src="widget.js" data-open="true" defer></script>
+</body>
+</html>

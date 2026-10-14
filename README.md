@@ -4,11 +4,15 @@
 
 No API, data feed or spreadsheet is needed. HomeFinder AI follows the website's own sitemap, reads every development and home page, and keeps itself up to date.
 
-![HomeFinder AI searching new homes](docs/search.png)
+![HomeFinder AI demo page](docs/landing.png)
 
-| Every detail of a home | On a phone |
-|---|---|
-| ![Home details with rooms, offers and energy features](docs/detail.png) | ![Mobile chat](docs/mobile.png) |
+| Search in plain English | Everything about a home | Room-by-room sizes |
+|---|---|---|
+| ![Search results as home cards](docs/search.png) | ![Home details with offers](docs/detail.png) | ![Room sizes from the floor plans](docs/rooms.png) |
+
+<p align="center"><img src="docs/mobile.png" width="300" alt="HomeFinder AI on a phone"></p>
+
+*Screenshots use live data read from the website (1,771 homes across 187 developments). The site's photos are replaced with a placeholder here because they weren't loadable in the screenshot environment. In normal use the real photos show.*
 
 > **Independent portfolio demo.** It runs against the public [David Wilson Homes](https://www.dwh.co.uk) website and is not affiliated with or endorsed by David Wilson Homes or Barratt Redrow plc. Every home links back to its official page, and prices, offers and availability should always be confirmed with the builder.
 

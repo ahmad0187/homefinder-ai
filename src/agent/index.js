@@ -13,7 +13,7 @@ function suggestionsFor(out) {
 export async function chat({ index, message, history = [], context = {}, action }) {
   if (index.isEmpty) {
     return {
-      reply: "I haven't read the website yet, so I don't have any homes to show. Run `npm run crawl` on the server and try again in a few minutes.",
+      reply: "I'm reading the website for the first time, so I don't have any homes to show yet. Please try again in a few minutes. (If this keeps happening, run `npm run crawl` on the server.)",
       mode: 'empty',
       suggestions: [],
     };

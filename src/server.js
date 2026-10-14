@@ -11,7 +11,7 @@ app.listen(config.port, () => {
   console.log(`${config.assistantName} running on http://localhost:${config.port}`);
   console.log(`  Reading: ${config.siteUrl}`);
   console.log(`  AI: ${config.anthropicKey ? `Claude (${config.model})` : 'built-in assistant (set ANTHROPIC_API_KEY for Claude)'}`);
-  console.log(s.homes ? `  Index: ${s.homes} homes, ${s.developments} developments, built ${s.builtAt}` : '  Index is empty: run `npm run crawl` first.');
+  console.log(s.homes ? `  Index: ${s.homes} homes, ${s.developments} developments, built ${s.builtAt}` : '  Index is empty: reading the website now (about 10 minutes)…');
 });
 
 // Keep the index fresh: re-read the website in the background once it's older than REFRESH_HOURS.
@@ -22,7 +22,8 @@ if (process.env.AUTO_REFRESH !== 'off') {
     if (running || ageH < config.refreshHours) return;
     running = true;
     try {
-      const r = await crawlSite(index, { log: () => {} });
+      // First start (empty index) also reads the buying-guide pages; nightly refreshes only re-read developments.
+      const r = await crawlSite(index, { content: index.isEmpty || index.content.length === 0, log: () => {} });
       console.log(`Index refreshed: ${r.homes} homes, ${r.developments} developments (${r.seconds}s, ${r.errors.length} errors)`);
     } catch (err) {
       console.error('Background refresh failed:', err.message);
@@ -31,5 +32,5 @@ if (process.env.AUTO_REFRESH !== 'off') {
     }
   };
   setInterval(refresh, 30 * 60_000).unref();
-  setTimeout(refresh, 15_000).unref();
+  setTimeout(refresh, index.isEmpty ? 2_000 : 15_000).unref();
 }
